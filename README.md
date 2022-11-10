@@ -35,13 +35,13 @@
 ##
 <p align="center"> ✪ ᴅᴇᴘʟᴏʏᴍᴇɴᴛs ✪ </p>
 
-## ʀᴀɪʟᴡᴀʏs (recomended)
+ʀᴀɪʟᴡᴀʏs (recomended)
 <p align="center"><a href="https://railway.app/new/template?template=https%3A%2F%2Fgithub.com%2Fthesanzu%2FVideoPlayerBot&envs=API_ID%2CAPI_HASH%2CBOT_TOKEN%2CSESSION_STRING%2CASSISTANT_NAME%2CSUDO_USERS%2CREPLY_MESSAGE%2CSUPPORT_GROUP%2CUPDATES_CHANNEL&optionalEnvs=REPLY_MESSAGE%2CSUPPORT_GROUP%2CUPDATES_CHANNEL&API_IDDesc=User+Account+Telegram+API_ID+get+it+from+my.telegram.org%2Fapps&API_HASHDesc=User+Account+Telegram+API_HASH+get+it+from+my.telegram.org%2Fapps&BOT_TOKENDesc=Your+Telegram+Bot+Token%2C+get+it+from+%40Botfather+XD&SESSION_STRINGDesc=Pyrogram+Session+String+of+User+Account%2C+get+it+from+%40genStr_robot&ASSISTANT_NAMEDesc=Your+Video+Player%27s+assistant+username+without+%40&SUDO_USERSDesc=ID+of+Sudo+Users+who+can+use+Admin+commands+%28for+multiple+users+seperated+by+space%29&REPLY_MESSAGEDesc=A+reply+message+to+those+who+message+the+USER+account+in+PM.+Make+it+blank+if+you+do+not+need+this+feature.&SUPPORT_GROUPDesc=Support+Group+username+without+%40+%5BLeave+this+if+you+don%27t+have+one%5D&UPDATES_CHANNELDesc=Updates+Channel+username+without+%40+%5BLeave+this+if+you+don%27t+have+one%5D&SUPPORT_GROUPDefault=Reyn0pe&UPDATES_CHANNELDefault=TheSanzuXD&REPLY_MESSAGEDefault=Hello+Sir%2C+I%27m+a+bot+to+stream+videos+on+telegram+voice+chat%2C+not+having+time+to+chat+with+you+%F0%9F%98%82%21&referralCode=SAFONE"><img src="https://img.shields.io/badge/Deploy%20To%20Railway-charcoal    ?style=for-the-badge&logo=railway" width="200""/></a></p>
 
-## ʜᴇʀᴏᴋᴜ (ytta)
+ʜᴇʀᴏᴋᴜ (ytta)
 <p align="center"><a href="https://heroku.com/deploy"> <img src="https://img.shields.io/badge/Deploy%20On%20Heroku-charcoal?style=for-the-badge&logo=heroku" width="200""/></a></p>
 
-## ʟᴏᴄᴀʟ ʜᴏsᴛ (sipaling vps)
+ʟᴏᴄᴀʟ ʜᴏsᴛ (sipaling vps)
 ```sh
 $ git clone -b main https://github.com/thesanzu/VideoPlayerBot
 $ cd VideoPlayerBot
