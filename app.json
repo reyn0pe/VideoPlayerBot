@@ -1,8 +1,8 @@
 {
-    "name": "Telegram Video Player Bot",
-    "description": "An Telegram Bot By @AsmSafone To Stream Videos in Voice Chat",
-    "repository": "https://github.com/AsmSafone/VideoPlayerBot",
-    "logo": "https://telegra.ph/file/1adba0bdcbcf7d81c8ab8.jpg",
+    "name": "Sanzu Video Player",
+    "description": "An Telegram Bot By @thesanzu To Stream Videos in Voice Chat",
+    "repository": "https://github.com/thesanzu/VideoPlayerBot",
+    "logo": "https://telegra.ph/file/f7a29d160344e921be17b.jpg",
     "stack": "container",
     "keywords": [
       "telegram",
@@ -43,12 +43,12 @@
       "SUPPORT_GROUP": {
         "description": "Support Group username without @ [Leave this if you don't have one]",
         "required": false,
-        "value": "AsmSupport"
+        "value": "reyn0pe"
       },     
       "UPDATES_CHANNEL": {
         "description": "Updates Channel username without @ [Leave this if you don't have one].",
         "required": false,
-        "value": "AsmSafone"
+        "value": "TheSanzuXD"
       },
       "REPLY_MESSAGE": {
         "description": "A reply message to those who message the USER account in PM. Make it blank if you do not need this feature.",
