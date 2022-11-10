@@ -299,10 +299,10 @@ async def endstream(client, m: Message):
 async def audio_ended_handler(_, __):
     await sleep(3)
     await group_call.stop()
-    print(f"[INFO] - AUDIO_CALL ENDED !")
+    print(f"[𝗜𝗡𝗙𝗢] - ɢɪᴛᴜ ᴅᴏɴɢ ɢᴜᴇ ᴄᴀᴘᴇ ᴘᴇɴɢᴇɴ ɴɢᴏᴘɪ ᴅᴜʟᴜ, ᴊᴏɪɴ ᴅᴜʟᴜ ʟᴀʜ ʙᴀʙɪ ᴋᴀʟᴏ ᴋᴀɢᴀ ᴊᴏɪɴ ɢᴜᴇ sᴜᴍᴘᴀʜɪɴ ᴋᴇʟᴀᴍɪɴ ʟᴏ ʙᴜsᴜᴋ @reyn0pe !")
 
 @group_call.on_video_playout_ended
 async def video_ended_handler(_, __):
     await sleep(3)
     await group_call.stop()
-    print(f"[INFO] - VIDEO_CALL ENDED !")
+    print(f"[𝗜𝗡𝗙𝗢] - ɢɪᴛᴜ ᴅᴏɴɢ ɢᴜᴇ ᴄᴀᴘᴇ ᴘᴇɴɢᴇɴ ɴɢᴏᴘɪ ᴅᴜʟᴜ, ᴊᴏɪɴ ᴅᴜʟᴜ ʟᴀʜ ʙᴀʙɪ ᴋᴀʟᴏ ᴋᴀɢᴀ ᴊᴏɪɴ ɢᴜᴇ sᴜᴍᴘᴀʜɪɴ ᴋᴇʟᴀᴍɪɴ ʟᴏ ʙᴜsᴜᴋ @reyn0pe !")
