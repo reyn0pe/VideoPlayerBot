@@ -92,8 +92,8 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>
 
 ## Credits
 
-- [Me](https://github.com/thesanzu) for [Noting](https://github.com/thesanzu/VideoPlayerBot)
-- [Dipsy](https://t.me/dipsyaja) for [Open Ayang Daerah Jaktim](https://t.me/dipsyaja)
-- [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)
-- [MarshalX](https://github.com/MarshalX) for [pytgcalls](https://github.com/MarshalX/tgcalls)️
-- And Thanks To All [Contributors](https://github.com/thesanzu/VideoPlayerBot/graphs/contributors)!
+*  [Me](https://github.com/thesanzu) for [Noting](https://github.com/thesanzu/VideoPlayerBot)
+*  [Dipsy](https://t.me/dipsyaja) for [Open Ayang](https://t.me/dipsyaja)
+*  [Dan](https://github.com/delivrance) for [Pyrogram](https://github.com/pyrogram/pyrogram)
+*  [MarshalX](https://github.com/MarshalX) for [pytgcalls](https://github.com/MarshalX/tgcalls)️
+*  And Thanks To All [Contributors](https://github.com/thesanzu/VideoPlayerBot/graphs/contributors)!
