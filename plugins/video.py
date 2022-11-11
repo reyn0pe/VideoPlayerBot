@@ -1,5 +1,19 @@
 """
-© thesanzu
+VideoPlayerBot, Telegram Video Chat Bot
+Copyright (c) 2021  Asm Safone <https://github.com/AsmSafone>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
 import os
@@ -35,13 +49,13 @@ group_call = GroupCallFactory(User, GroupCallFactory.MTPROTO_CLIENT_TYPE.PYROGRA
 async def pause_callbacc(client, CallbackQuery):
     chat_id = CallbackQuery.message.chat.id
     if chat_id in AUDIO_CALL:
-        text = f"» ᴘᴀᴜsᴇ «"
+        text = f"⏸ Paused !"
         await AUDIO_CALL[chat_id].set_audio_pause(True)
     elif chat_id in VIDEO_CALL:
-        text = f"» ᴘᴀᴜsᴇ «"
+        text = f"⏸ Paused !"
         await VIDEO_CALL[chat_id].set_video_pause(True)
     else:
-        text = f"ᴍᴀɴᴀ ʙɪsᴀ ʙᴀʙɪ ʟᴏ ʟᴀɢɪ ᴋᴀɢᴀ ᴘʟᴀʏ ᴛᴏʟᴏʟ ᴀᴍᴀᴛ sɪ ɴɪ ʙᴏᴄᴀʜ"
+        text = f"❌ Nothing is Playing !"
     await Client.answer_callback_query(
         CallbackQuery.id, text, show_alert=True
     )
@@ -50,13 +64,13 @@ async def pause_callbacc(client, CallbackQuery):
 async def resume_callbacc(client, CallbackQuery):
     chat_id = CallbackQuery.message.chat.id
     if chat_id in AUDIO_CALL:
-        text = f"» ʀᴇsᴜᴍᴇ «"
+        text = f"▶️ Resumed !"
         await AUDIO_CALL[chat_id].set_audio_pause(False)
     elif chat_id in VIDEO_CALL:
-        text = f"» ʀᴇsᴜᴍᴇ «"
+        text = f"▶️ Resumed !"
         await VIDEO_CALL[chat_id].set_video_pause(False)
     else:
-        text = f"ᴍᴀɴᴀ ʙɪsᴀ ʙᴀʙɪ ʟᴏ ʟᴀɢɪ ᴋᴀɢᴀ ᴘʟᴀʏ ᴛᴏʟᴏʟ ᴀᴍᴀᴛ sɪ ɴɪ ʙᴏᴄᴀʜ"
+        text = f"❌ Nothing is Playing !"
     await Client.answer_callback_query(
         CallbackQuery.id, text, show_alert=True
     )
@@ -66,21 +80,21 @@ async def resume_callbacc(client, CallbackQuery):
 async def end_callbacc(client, CallbackQuery):
     chat_id = CallbackQuery.message.chat.id
     if chat_id in AUDIO_CALL:
-        text = f"» sᴛᴏᴘᴘᴇᴅ «"
+        text = f"⏹️ Stopped !"
         await AUDIO_CALL[chat_id].stop()
         AUDIO_CALL.pop(chat_id)
     elif chat_id in VIDEO_CALL:
-        text = f"» sᴛᴏᴘᴘᴇᴅ «"
+        text = f"⏹️ Stopped !"
         await VIDEO_CALL[chat_id].stop()
         VIDEO_CALL.pop(chat_id)
     else:
-        text = f"ᴍᴀɴᴀ ʙɪsᴀ ʙᴀʙɪ ʟᴏ ʟᴀɢɪ ᴋᴀɢᴀ ᴘʟᴀʏ ᴛᴏʟᴏʟ ᴀᴍᴀᴛ sɪ ɴɪ ʙᴏᴄᴀʜ"
+        text = f"❌ Nothing is Playing !"
     await Client.answer_callback_query(
         CallbackQuery.id, text, show_alert=True
     )
     await Client.send_message(
         chat_id=CallbackQuery.message.chat.id,
-        text=f" **ɢɪᴛᴜ ᴅᴏɴɢ ɢᴜᴇ ᴄᴀᴘᴇ ᴘᴇɴɢᴇɴ ɴɢᴏᴘɪ ᴅᴜʟᴜ, ᴊᴏɪɴ ᴅᴜʟᴜ ʟᴀʜ ʙᴀʙɪ ᴋᴀʟᴏ ᴋᴀɢᴀ ᴊᴏɪɴ ɢᴜᴇ sᴜᴍᴘᴀʜɪɴ ᴋᴇʟᴀᴍɪɴ ʟᴏ ʙᴜsᴜᴋ @reyn0pe !**"
+        text=f"✅ **Streaming Stopped & Left The Video Chat !**"
     )
     await CallbackQuery.message.delete()
 
@@ -88,21 +102,21 @@ async def end_callbacc(client, CallbackQuery):
 @Client.on_message(filters.command(["stream", f"stream@{USERNAME}"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def stream(client, m: Message):
-    msg = await m.reply_text("`sᴀʙᴀʀ ʟᴀɢɪ ᴏᴛᴡ...`")
+    msg = await m.reply_text("🔄 `Processing ...`")
     chat_id = m.chat.id
     media = m.reply_to_message
     if not media and not ' ' in m.text:
-        await msg.edit("ᴋɪʀɪᴍ ʟɪɴᴋ ᴀᴛᴀᴜ ɢᴀ ʀᴇᴘʟʏ ᴠɪᴅᴇᴏ ɴʏᴀ ʏᴀ ᴋᴏɴᴛᴏʟ")
+        await msg.edit("❗ __Send Me An Live Stream Link / YouTube Video Link / Reply To An Video To Start Video Streaming!__")
 
     elif ' ' in m.text:
         text = m.text.split(' ', 1)
         query = text[1]
         if not 'http' in query:
-            return await msg.edit("ᴋɪʀɪᴍ ʟɪɴᴋ ᴀᴛᴀᴜ ɢᴀ ʀᴇᴘʟʏ ᴠɪᴅᴇᴏ ɴʏᴀ ʏᴀ ᴋᴏɴᴛᴏʟ")
+            return await msg.edit("❗ __Send Me An Live Stream Link / YouTube Video Link / Reply To An Video To Start Video Streaming!__")
         regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
         match = re.match(regex, query)
         if match:
-            await msg.edit("`sᴀʙᴀʀ ʟᴀɢɪ ᴏᴛᴡ ...`")
+            await msg.edit("🔄 `Starting YouTube Video Stream ...`")
             try:
                 meta = ydl.extract_info(query, download=False)
                 formats = meta.get('formats', [meta])
@@ -116,11 +130,11 @@ async def stream(client, m: Message):
                 split = thumbid.split("?")
                 thumb = split[0].strip()
             except Exception as e:
-                return await msg.edit(f" **ᴍᴀᴍᴘᴜs ᴅᴏᴡɴʟᴏᴀᴅ ᴇʀʀᴏʀ** \n\n`{e}`")
+                return await msg.edit(f"❌ **YouTube Download Error !** \n\n`{e}`")
                 print(e)
 
         else:
-            await msg.edit("`sᴀʙᴀʀ ʟᴀɢɪ ᴏᴛᴡ ...`")
+            await msg.edit("🔄 `Starting Live Video Stream ...`")
             link = query
             thumb = "https://telegra.ph/file/3e14128ad5c9ec47801bd.jpg"
 
@@ -144,31 +158,31 @@ async def stream(client, m: Message):
             await msg.delete()
             await m.reply_photo(
                photo=thumb, 
-               caption=f" **ɴɢᴇɴɢɢ [Video Streaming]({query}) ᴅɪ {m.chat.title} !**",
+               caption=f"▶️ **Started [Video Streaming]({query}) In {m.chat.title} !**",
                reply_markup=InlineKeyboardMarkup(
                [
                    [
                        InlineKeyboardButton(
-                          text="ᴘᴀᴜsᴇ",
+                          text="⏸",
                           callback_data="pause_callback",
                        ),
                        InlineKeyboardButton(
-                          text="ʀᴇsᴜᴍᴇ",
+                          text="▶️",
                           callback_data="resume_callback",
                        ),
                        InlineKeyboardButton(
-                          text="ᴇɴᴅ️",
+                          text="⏹️",
                           callback_data="end_callback",
                        ),
                    ],
                ]),
             )
         except Exception as e:
-            await msg.edit(f" **ᴍᴀᴍᴘᴜs ᴇʀʀᴏʀ ᴀᴡᴏᴋᴀᴡᴏᴋ!** \n\nError: `{e}`")
+            await msg.edit(f"❌ **An Error Occoured !** \n\nError: `{e}`")
             return await group_call.stop()
 
     elif media.video or media.document:
-        await msg.edit("`sᴀʙᴀʀ ʟᴀɢɪ ᴅᴏᴡɴʟᴏᴀᴅ ...`")
+        await msg.edit("🔄 `Downloading ...`")
         if media.video and media.video.thumbs:
             lol = media.video.thumbs[0]
             lel = await client.download_media(lol['file_id'])
@@ -198,40 +212,40 @@ async def stream(client, m: Message):
             await msg.delete()
             await m.reply_photo(
                photo=thumb,
-               caption=f" **ɴɢᴇɴɢɢɢ [Video Streaming](https://t.me/reyn0pe) ᴅɪ {m.chat.title} !**",
+               caption=f"▶️ **Started [Video Streaming](https://t.me/reyn0pe) In {m.chat.title} !**",
                reply_markup=InlineKeyboardMarkup(
                [
                    [
                        InlineKeyboardButton(
-                          text="ᴘᴀᴜsᴇ",
+                          text="⏸",
                           callback_data="pause_callback",
                        ),
                        InlineKeyboardButton(
-                          text="ʀᴇsᴜᴍᴇ️",
+                          text="▶️",
                           callback_data="resume_callback",
                        ),
                        InlineKeyboardButton(
-                          text="ᴇɴᴅ️",
+                          text="⏹️",
                           callback_data="end_callback",
                        ),
                    ],
                ]),
             )
         except Exception as e:
-            await msg.edit(f" **ᴍᴀᴍᴘᴜs ᴇʀʀᴏʀ ᴀᴡᴏᴋᴀᴡᴏᴋ !** \n\nError: `{e}`")
+            await msg.edit(f"❌ **An Error Occoured !** \n\nError: `{e}`")
             return await group_call.stop()
 
     else:
         await msg.edit(
-            "ᴀᴘᴀᴀɴ ʟᴏ ᴍᴀᴜ ɴʏᴀʀɪ ᴠɪᴅᴇᴏ ʏᴏᴜᴛᴜʙᴇ?",
+            "💁🏻‍♂️ Do you want to search for a YouTube video?",
             reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "ɪʏᴀ", switch_inline_query_current_chat=""
+                        "✅ Yes", switch_inline_query_current_chat=""
                     ),
                     InlineKeyboardButton(
-                        "ᴏɢᴀʜ", callback_data="close"
+                        "No ❌", callback_data="close"
                     )
                 ]
             ]
@@ -246,14 +260,14 @@ async def pause(_, m: Message):
 
     if chat_id in AUDIO_CALL:
         await AUDIO_CALL[chat_id].set_audio_pause(True)
-        await m.reply_text(" **ɴᴀʜʜ ɢɪᴛᴜ ɢᴜᴇ ᴄᴀᴘᴇ**")
+        await m.reply_text("⏸ **Paused Audio Streaming !**")
 
     elif chat_id in VIDEO_CALL:
         await VIDEO_CALL[chat_id].set_video_pause(True)
-        await m.reply_text(" **ɴᴀʜ ɢɪᴛᴜ ɢᴜᴇ ᴄᴀᴘᴇ**")
+        await m.reply_text("⏸ **Paused Video Streaming !**")
 
     else:
-        await m.reply_text(" **ᴍᴀɴᴀ ʙɪsᴀ ᴀᴊɢ ʟᴏ ᴀᴊᴀ ʙᴇʟᴜᴍ ᴘʟᴀʏ ᴀᴘᴀ ᴀᴘᴀ ᴅᴀsᴀʀ ᴀɴᴀᴋ ᴛᴏʟᴏʟ**")
+        await m.reply_text("❌ **Noting Is Streaming !**")
 
 
 @Client.on_message(filters.command(["resume", f"resume@{USERNAME}"]) & filters.group & ~filters.edited)
@@ -263,34 +277,34 @@ async def resume(_, m: Message):
 
     if chat_id in AUDIO_CALL:
         await AUDIO_CALL[chat_id].set_audio_pause(False)
-        await m.reply_text(" **ᴄᴀᴘᴇ ᴀᴊɢ ʙᴀʀᴜ ᴊᴜɢᴀ ɢᴜᴇ ɴɢᴏᴘɪ sᴀᴍᴀ ʙᴇʟɪ ʙᴀᴋᴡᴀɴ ᴅᴀʜ ʟᴏ ɢᴀs ʟᴀɢɪ**")
+        await m.reply_text("▶️ **Resumed Audio Streaming !**")
 
     elif chat_id in VIDEO_CALL:
         await VIDEO_CALL[chat_id].set_video_pause(False)
-        await m.reply_text(" **ᴄᴀᴘᴇ ᴀᴊɢ ʙᴀʀᴜ ᴊᴜɢᴀ ɢᴜᴅ ɴɢᴏᴘɪ sᴀᴍᴀ ʙᴇʟɪ ʙᴀᴋᴡᴀɴ ᴅᴀʜ ʟᴏ ɢᴀs ᴀᴊᴀ!**")
+        await m.reply_text("▶️ **Resumed Video Streaming !**")
 
     else:
-        await m.reply_text(" **ᴍᴀɴᴀ ʙɪsᴀ ᴀᴊɢᴏ ᴀᴊᴀ ʙᴇʟᴜᴍ ᴘʟᴀʏ ᴀᴘᴀ ᴀᴘᴀ ᴅᴀsᴀʀ ᴀɴᴀᴋ ᴛᴏʟᴏʟ**")
+        await m.reply_text("❌ **Noting Is Streaming !**")
 
 
 @Client.on_message(filters.command(["endstream", f"endstream@{USERNAME}"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def endstream(client, m: Message):
-    msg = await m.reply_text("`sᴀʙᴀʀ ʟᴀɢɪ ᴏᴛᴡ ...`")
+    msg = await m.reply_text("🔄 `Processing ...`")
     chat_id = m.chat.id
 
     if chat_id in AUDIO_CALL:
         await AUDIO_CALL[chat_id].stop()
         AUDIO_CALL.pop(chat_id)
-        await msg.edit(" **ᴀᴋʜɪʀɴʏᴀ ʟᴏ ᴘᴇᴋᴀ ᴊᴜɢᴀ**")
+        await msg.edit("⏹️ **Stopped Audio Streaming !**")
 
     elif chat_id in VIDEO_CALL:
         await VIDEO_CALL[chat_id].stop()
         VIDEO_CALL.pop(chat_id)
-        await msg.edit(" **ᴀᴋʜɪʀɴʏᴀ ʟᴏ ᴘᴇᴋᴀ ᴊᴜɢᴀ**")
+        await msg.edit("⏹️ **Stopped Video Streaming !**")
 
     else:
-        await msg.edit("**ᴡᴏʏ ᴀɴᴀᴋ ᴋᴏɴᴛᴏʟ ʟᴏ ʜᴀʀᴜs ᴘʟᴀʏ ᴅᴜʟᴜ ʙᴀʙɪ **")
+        await msg.edit("🤖 **Please Start An Stream First !**")
 
 
 # pytgcalls handlers
@@ -299,10 +313,10 @@ async def endstream(client, m: Message):
 async def audio_ended_handler(_, __):
     await sleep(3)
     await group_call.stop()
-    print(f"[𝗜𝗡𝗙𝗢] - ɢɪᴛᴜ ᴅᴏɴɢ ɢᴜᴇ ᴄᴀᴘᴇ ᴘᴇɴɢᴇɴ ɴɢᴏᴘɪ ᴅᴜʟᴜ, ᴊᴏɪɴ ᴅᴜʟᴜ ʟᴀʜ ʙᴀʙɪ ᴋᴀʟᴏ ᴋᴀɢᴀ ᴊᴏɪɴ ɢᴜᴇ sᴜᴍᴘᴀʜɪɴ ᴋᴇʟᴀᴍɪɴ ʟᴏ ʙᴜsᴜᴋ @reyn0pe !")
+    print(f"[INFO] - GASKEUN BOSQU, JOIN @reyn0pe !")
 
 @group_call.on_video_playout_ended
 async def video_ended_handler(_, __):
     await sleep(3)
     await group_call.stop()
-    print(f"[𝗜𝗡𝗙𝗢] - ɢɪᴛᴜ ᴅᴏɴɢ ɢᴜᴇ ᴄᴀᴘᴇ ᴘᴇɴɢᴇɴ ɴɢᴏᴘɪ ᴅᴜʟᴜ, ᴊᴏɪɴ ᴅᴜʟᴜ ʟᴀʜ ʙᴀʙɪ ᴋᴀʟᴏ ᴋᴀɢᴀ ᴊᴏɪɴ ɢᴜᴇ sᴜᴍᴘᴀʜɪɴ ᴋᴇʟᴀᴍɪɴ ʟᴏ ʙᴜsᴜᴋ @reyn0pe !")
+    print(f"[INFO] - MAU NGOPI DULU DAH, JOIN @reyn0ps !")

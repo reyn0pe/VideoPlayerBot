@@ -17,21 +17,21 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQ
 @Client.on_message(filters.command(["play", f"play@{USERNAME}"]) & filters.group & ~filters.edited)
 @authorized_users_only
 async def play(client, m: Message):
-    msg = await m.reply_text("`sᴀʙᴀʀ ʟᴀɢɪ ᴏᴛᴡ ...`")
+    msg = await m.reply_text("🔄 `Processing ...`")
     chat_id = m.chat.id
     media = m.reply_to_message
     if not media and not ' ' in m.text:
-        await msg.edit("ᴋɪʀɪᴍ ʟɪɴᴋ ᴀᴛᴀᴜ ɢᴀ ʀᴇᴘʟʏ ᴠɪᴅᴇᴏ ɴʏᴀ ʏᴀ ᴋᴏɴᴛᴏʟ")
+        await msg.edit("❗ __Send Me An Live Radio Link / YouTube Video Link / Reply To An Audio To Start Audio Streaming!__")
 
     elif ' ' in m.text:
         text = m.text.split(' ', 1)
         query = text[1]
         if not 'http' in query:
-            return await msg.edit(ᴋɪʀɪᴍ ʟɪɴᴋ ᴀᴛᴀᴜ ɢᴀ ʀᴇᴘʟʏ ᴠɪᴅᴇᴏ ɴʏᴀ ʏᴀ ᴋᴏɴᴛᴏʟ")
+            return await msg.edit("❗ __Send Me An Live Stream Link / YouTube Video Link / Reply To An Video To Start Video Streaming!__")
         regex = r"^(https?\:\/\/)?(www\.youtube\.com|youtu\.?be)\/.+"
         match = re.match(regex, query)
         if match:
-            await msg.edit("`sᴀʙᴀʀ ʟᴀɢɪ ᴏᴛᴡ ...`")
+            await msg.edit("🔄 `Starting YouTube Audio Stream ...`")
             try:
                 meta = ydl.extract_info(query, download=False)
                 formats = meta.get('formats', [meta])
@@ -39,11 +39,11 @@ async def play(client, m: Message):
                     ytstreamlink = f['url']
                 link = ytstreamlink
             except Exception as e:
-                return await msg.edit(f"ᴍᴀᴍᴘᴜs ᴅᴏᴡɴʟᴏᴀᴅ ᴇʀʀᴏʀ** \n\n`{e}`")
+                return await msg.edit(f"❌ **YouTube Download Error !** \n\n`{e}`")
                 print(e)
 
         else:
-            await msg.edit("`sᴀʙᴀʀ ʟᴀɢɪ ᴏᴛᴡ ...`")
+            await msg.edit("🔄 `Starting Live Audio Stream ...`")
             link = query
 
         vid_call = VIDEO_CALL.get(chat_id)
@@ -64,31 +64,31 @@ async def play(client, m: Message):
             await group_call.start_audio(link, repeat=False)
             AUDIO_CALL[chat_id] = group_call
             await msg.delete()
-            await m.reply_text(f"**ɴɢᴇɴɢɢ [Audio Streaming]({query}) ᴅɪ {m.chat.title} !**",
+            await m.reply_text(f"▶️ **Started [Audio Streaming]({query}) In {m.chat.title} !**",
                reply_markup=InlineKeyboardMarkup(
                [
                    [
                        InlineKeyboardButton(
-                          text="ᴘᴀᴜsᴇ",
+                          text="⏸",
                           callback_data="pause_callback",
                        ),
                        InlineKeyboardButton(
-                          text="ʀᴇsᴜᴍᴇ️",
+                          text="▶️",
                           callback_data="resume_callback",
                        ),
                        InlineKeyboardButton(
-                          text="ᴇɴᴅ",
+                          text="⏹️",
                           callback_data="end_callback",
                        ),
                    ],
                ]),
             )
         except Exception as e:
-            await msg.edit(f"**ᴍᴀᴍᴘᴜs ᴇʀʀᴏʀ ᴀᴡᴏᴋᴀᴡᴏᴋ!** \n\nError: `{e}`")
+            await msg.edit(f"❌ **An Error Occoured !** \n\nError: `{e}`")
             return await group_call.stop()
 
     elif media.audio or media.document:
-        await msg.edit("`sᴀʙᴀʀ ɢᴜᴇ ʟᴀɢɪ ᴅᴏᴡɴʟᴏᴀᴅ...`")
+        await msg.edit("🔄 `Downloading ...`")
         audio = await client.download_media(media)
 
         vid_call = VIDEO_CALL.get(chat_id)
@@ -109,40 +109,40 @@ async def play(client, m: Message):
             await group_call.start_audio(audio, repeat=False)
             AUDIO_CALL[chat_id] = group_call
             await msg.delete()
-            await m.reply_text(f" **ɴɢᴇɴɢ [Audio Streaming](https://t.me/reyn0pe) ᴅɪ {m.chat.title} !**",
+            await m.reply_text(f"▶️ **Started [Audio Streaming](https://t.me/reyn0pe) In {m.chat.title} !**",
                reply_markup=InlineKeyboardMarkup(
                [
                    [
                        InlineKeyboardButton(
-                          text="ᴘᴀᴜsᴇ",
+                          text="⏸",
                           callback_data="pause_callback",
                        ),
                        InlineKeyboardButton(
-                          text="ʀᴇsᴜᴍᴇ",
+                          text="▶️",
                           callback_data="resume_callback",
                        ),
                        InlineKeyboardButton(
-                          text="ᴇɴᴅ️",
+                          text="⏹️",
                           callback_data="end_callback",
                        ),
                    ],
                ]),
             )
         except Exception as e:
-            await msg.edit(f" **ᴍᴀᴍᴘᴜs ᴇʀʀᴏғ ᴀᴡᴏᴋᴀᴡᴏᴋ** \n\nError: `{e}`")
+            await msg.edit(f"❌ **An Error Occoured !** \n\nError: `{e}`")
             return await group_call.stop()
 
     else:
         await msg.edit(
-            "ʟᴏ ᴍᴀᴜ ɴʏᴀʀɪ ᴀᴘᴀᴀɴsɪ ɢᴏʙʟᴏᴋ ʏᴀɴɢ ʟᴏ ᴘᴇɴɢᴇɴ ᴄᴀʀɪ ᴋᴀɢᴀ ᴀᴅᴀ ᴛᴏʟᴏʟ",
+            "💁🏻‍♂️ Do you want to search for a YouTube song?",
             reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "ʏᴇᴀʜ", switch_inline_query_current_chat=""
+                        "✅ Yes", switch_inline_query_current_chat=""
                     ),
                     InlineKeyboardButton(
-                        "ᴏɢᴀʜ", callback_data="close"
+                        "No ❌", callback_data="close"
                     )
                 ]
             ]
@@ -153,10 +153,10 @@ async def play(client, m: Message):
 @Client.on_message(filters.command(["restart", f"restart@{USERNAME}"]))
 @sudo_users_only
 async def restart(client, m: Message):
-    k = await m.reply_text("`ᴍᴀᴜ ʙᴇʟɪ ɢᴏʀᴇɴɢᴀɴ ᴅᴜʟᴜ sᴀᴍᴀ ʙᴏs sᴀɴᴢᴜ ɴᴀɴᴛɪ ʙᴀʟɪᴋ ʟᴀɢɪ...`")
+    k = await m.reply_text("🔄 `Restarting ...`")
     await sleep(3)
     os.execl(sys.executable, sys.executable, *sys.argv)
     try:
-        await k.edit(" **ᴍᴀᴜ ɢᴏʀᴇᴀɴɢᴀɴ ɴʏᴀ ɢᴀ? ᴛᴀᴘɪ ʜᴀʙɪs sᴀᴍᴀ sɪ ʙᴏs. \nᴊᴏɪɴ @reyn0pe ᴋᴀɢᴀ ᴊᴏɪɴ ᴋᴇʟᴀᴍɪɴ ɴʏᴀ ʙᴜsᴜᴋ**")
+        await k.edit("✅ **Restarted Successfully! \nJoin @TheSanzuXD For More!**")
     except:
         pass

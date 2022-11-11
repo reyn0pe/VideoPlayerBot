@@ -1,5 +1,19 @@
 """
-© thesanzu
+VideoPlayerBot, Telegram Video Chat Bot
+Copyright (c) 2021  Asm Safone <https://github.com/AsmSafone>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
 import asyncio
@@ -15,18 +29,18 @@ from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup, CallbackQ
 async def start(client, message):
    buttons = [
             [
-                InlineKeyboardButton("ᴀɴᴀᴋ ᴛᴏʟᴏʟ ɢᴀʙɪsᴀ ᴘᴀᴋᴇ", callback_data="help"),
+                InlineKeyboardButton("CARA PAKE", callback_data="help"),
             ],
             [
-                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                InlineKeyboardButton("ʙᴏs ʙᴇsᴀʀ", url=f"https://t.me/sanzetc"),
+                InlineKeyboardButton("CHANNEL", url=f"https://t.me/reyn0pe"),
+                InlineKeyboardButton("ORDER", url=f"https://t.me/sanzetc"),
             ],
             [
-                InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="about"),
-                InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close"),
+                InlineKeyboardButton("ABOUT", callback_data="about"),
+                InlineKeyboardButton("CLOSE", callback_data="close"),
             ],
             [
-               InlineKeyboardButton("ᴍᴀsᴜᴋɪɴ ᴀᴋᴜ ʙᴀʙᴇ ᴀʜʜʜʜ", url=f"https://t.me/{USERNAME}?startgroup=true"),
+               InlineKeyboardButton("MASUKIN AKU SAYANG", url=f"https://t.me/{USERNAME}?startgroup=true"),
             ]
             ]
    reply_markup = InlineKeyboardMarkup(buttons)
@@ -36,15 +50,15 @@ async def start(client, message):
           reply_markup=reply_markup
        )
    else:
-      await message.reply_text(f"**{BOT_NAME} ᴀᴋʜɪʀɴʏᴀ ɢᴜᴇ ʜɪᴅᴜᴘ ʜᴀʜᴀ**")
+      await message.reply_text(f"**{BOT_NAME} is Alive !** ✨")
 
 @Client.on_callback_query()
 async def cb_handler(client: Client, query: CallbackQuery):
     if query.data=="help":
         buttons = [
             [
-                InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="start"),
-                InlineKeyboardButton ("sᴜᴘᴘᴏʀᴛ", url=f"https://t.me/{SUPPORT_GROUP}"),
+                InlineKeyboardButton("BACK", callback_data="start"),
+                InlineKeyboardButton ("SUPPORT", url=f"https://t.me/{SUPPORT_GROUP}"),
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -59,8 +73,8 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data=="about":
         buttons = [
             [
-                InlineKeyboardButton("ʙᴀᴄᴋ", callback_data="start"),
-                InlineKeyboardButton ("sᴜᴘᴘᴏʀғ", url=f"https://t.me/{SUPPORT_GROUP}"),
+                InlineKeyboardButton("BACK", callback_data="start"),
+                InlineKeyboardButton ("SUPPORT", url=f"https://t.me/{SUPPORT_GROUP}"),
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)
@@ -75,18 +89,18 @@ async def cb_handler(client: Client, query: CallbackQuery):
     elif query.data=="start":
         buttons = [
             [
-                InlineKeyboardButton("ᴀɴᴀᴋ ᴛᴏʟᴏʟ ɢᴀʙɪsᴀ ᴘᴀᴋᴇ", callback_data="help"),
+                InlineKeyboardButton("CARA PAKE", callback_data="help"),
             ],
             [
-                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url=f"https://t.me/{UPDATES_CHANNEL}"),
-                InlineKeyboardButton("ʙᴏs ʙᴇsᴀʀ", url=f"https://t.me/sanzetc"),
+                InlineKeyboardButton("CHANNEL", url=f"https://t.me/reyn0pe"),
+                InlineKeyboardButton("ORDER", url=f"https://t.me/sanzetc"),
             ],
             [
-                InlineKeyboardButton("ᴀʙᴏᴜᴛ", callback_data="about"),
-                InlineKeyboardButton("ᴄʟᴏsᴇ", callback_data="close"),
+                InlineKeyboardButton("ABOUT", callback_data="about"),
+                InlineKeyboardButton("CLOSE", callback_data="close"),
             ],
             [
-               InlineKeyboardButton("ᴍᴀsᴜᴋɪɴ ᴀᴋᴜ ʙᴀʙᴇ ᴀʜʜʜʜ", url=f"https://t.me/{USERNAME}?startgroup=true"),
+               InlineKeyboardButton("MASUKIN AKU SAYANG", url=f"https://t.me/{USERNAME}?startgroup=true"),
             ]
             ]
         reply_markup = InlineKeyboardMarkup(buttons)

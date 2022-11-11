@@ -1,5 +1,19 @@
 """
-© thesanzu
+VideoPlayerBot, Telegram Video Chat Bot
+Copyright (c) 2021  Asm Safone <https://github.com/AsmSafone>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
 import asyncio
@@ -12,11 +26,11 @@ from youtubesearchpython import VideosSearch
 
 buttons = [
             [
-                InlineKeyboardButton("ᴄʜᴀɴɴᴇʟ", url="https://t.me/TheSanzuXD"),
-                InlineKeyboardButton("sᴜᴘᴘᴏʀᴛ", url="https://t.me/reyn0pe"),
+                InlineKeyboardButton("CHANNEL", url="https://t.me/reyn0pe"),
+                InlineKeyboardButton("SUPPORT", url="https://t.me/TheSanzuXD"),
             ],
             [
-                InlineKeyboardButton("ᴏʀᴅᴇʀ ʙᴏᴛ", url="https://t.me/sanzetc"),
+                InlineKeyboardButton("ORDER BOT", url="https://t.me/saznetc"),
             ]
          ]
 
@@ -26,8 +40,8 @@ async def search(client, query):
     if query.query == "SAF_ONE":
         answers.append(
             InlineQueryResultArticle(
-                title="ᴛᴇʀᴀᴘᴋᴀɴ ʙᴏᴛ ᴘᴇᴍᴜᴛᴀʀ ᴠɪᴅᴇᴏ sᴇɴᴅɪʀɪ",
-                input_message_content=InputTextMessageContent(f"{REPLY_MESSAGE}\n\n<b>© ᴘᴏᴡᴇʀᴇᴅ ʙʏ : \n@sanzetx | @reyn0pe </b>", disable_web_page_preview=True),
+                title="Deploy Own Video Player Bot",
+                input_message_content=InputTextMessageContent(f"{REPLY_MESSAGE}\n\n<b>© Powered By : \n@sanzetx | @TheSanzuXD </b>", disable_web_page_preview=True),
                 reply_markup=InlineKeyboardMarkup(buttons)
                 )
             )
@@ -38,7 +52,7 @@ async def search(client, query):
         await client.answer_inline_query(
             query.id,
             results=answers,
-            switch_pm_text=("ᴛʏᴘɪɴɢ ɴᴀᴍᴀ ᴠɪᴅᴇᴏ ɴʏᴀ ᴛᴏʟᴏʟ"),
+            switch_pm_text=("✍️ Type An Video Name!"),
             switch_pm_parameter="help",
             cache_time=0
         )
@@ -69,7 +83,7 @@ async def search(client, query):
             await query.answer(
                 results=answers,
                 cache_time=0,
-                switch_pm_text=("ʟᴏ ɴʏᴀʀɪ ᴀᴘᴀᴀɴsɪ ʙᴇɢᴏ ʏᴀɴɢ ʟᴏ ᴄᴀʀɪ ᴋᴀɢᴀ ᴀᴅᴀ"),
+                switch_pm_text=("❌ No Results Found!"),
                 switch_pm_parameter="",
             )
 
