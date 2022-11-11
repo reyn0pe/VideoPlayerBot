@@ -1,5 +1,19 @@
 """
-© thesanzu
+VideoPlayerBot, Telegram Video Chat Bot
+Copyright (c) 2021  Asm Safone <https://github.com/AsmSafone>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU Affero General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU Affero General Public License for more details.
+
+You should have received a copy of the GNU Affero General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
 import os
@@ -19,9 +33,9 @@ if not os.path.isdir("./downloads"):
 
 Bot.start()
 User.start()
-print("\n[𝗜𝗡𝗙𝗢] - ᴀᴊɢ ʙᴀʀᴜ ᴊᴜɢᴀ ɴɢᴏᴘɪ ᴅᴀʜ sᴜʀᴜʜ ɴᴀɪᴋ ᴀᴊᴀ sᴀᴍᴀ ᴀɴᴀᴋ ʜᴀʀᴀᴍ, ᴊᴏɪɴ ᴅᴜʟᴜ ʟᴀʜ ʙᴀʙɪ ᴋᴀʟᴏ ᴋᴀɢᴀ ᴊᴏɪɴ ɢᴜᴇ sᴜᴍᴘᴀʜɪɴ ᴋᴇʟᴀᴍɪɴ ʟᴏ ʙᴜsᴜᴋ @reyn0pe !")
+print("\n[INFO] - GASKEUN BOSQU, JOIN @reyn0pe !")
 
 idle()
 Bot.stop()
 User.stop()
-print("\n[𝗜𝗡𝗙𝗢] - ɢɪᴛᴜ ᴅᴏɴɢ ɢᴜᴇ ᴄᴀᴘᴇ ᴘᴇɴɢᴇɴ ɴɢᴏᴘɪ ᴅᴜʟᴜ, ᴊᴏɪɴ ᴅᴜʟᴜ ʟᴀʜ ʙᴀʙɪ ᴋᴀʟᴏ ᴋᴀɢᴀ ᴊᴏɪɴ ɢᴜᴇ sᴜᴍᴘᴀʜɪɴ ᴋᴇʟᴀᴍɪɴ ʟᴏ ʙᴜsᴜᴋ @reyn0pe !")
+print("\n[INFO] - DAH MAU NGOPI DULU, JOIN @reyn0pe !")
