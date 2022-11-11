@@ -16,27 +16,16 @@ You should have received a copy of the GNU Affero General Public License
 along with this program.  If not, see <https://www.gnu.org/licenses/>
 """
 
-import time
-import assets.admins
-from typing import List
-from assets.admins import set
-from pyrogram.types import Chat
-from assets.admins import get as gett
+from pyrogram import Client
+from config import API_ID, API_HASH, BOT_TOKEN
 
-
-async def get_administrators(chat: Chat) -> List[int]:
-    get = gett(chat.id)
-
-    if get:
-        return get
-    else:
-        time.sleep(1)
-        administrators = await chat.get_members(filter="administrators")
-        to_set = []
-
-        for administrator in administrators:
-            if administrator.can_manage_voice_chats:
-                to_set.append(administrator.user.id)
-
-        set(chat.id, to_set)
-        return await get_administrators(chat)
+bot = Client(
+    "VideoPlayer",
+    API_ID,
+    API_HASH,
+    bot_token=BOT_TOKEN
+)
+bot.start()
+ok = bot.get_me()
+USERNAME = ok.username
+BOT_NAME = ok.first_name
